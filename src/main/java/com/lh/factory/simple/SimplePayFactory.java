@@ -1,5 +1,8 @@
-package com.lh.factory;
+package com.lh.factory.simple;
 
+import com.lh.factory.AliPay;
+import com.lh.factory.Pay;
+import com.lh.factory.WeChatPay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
