@@ -1,4 +1,6 @@
 package com.lh.factory;
+import com.lh.factory.abstractFactory.FactoryProducer;
+import com.lh.factory.abstractFactory.OrderFactory;
 import com.lh.factory.method.AliPayFactory;
 import com.lh.factory.method.PayFactory;
 import com.lh.factory.method.WeChatPayFactory;
@@ -21,8 +23,8 @@ public class Main {
         // 简单工厂模式
         Pay pay = SimplePayFactory.createPay("ali");
         pay.unifiedPay();
-
-        // 抽象工厂模式
+        System.out.println("==============");
+        // 工厂方法模式
         PayFactory aliPayFactory = new AliPayFactory();
         Pay aliPay = aliPayFactory.getPay();
         aliPay.unifiedPay();
@@ -30,5 +32,10 @@ public class Main {
         PayFactory weChatPayFactory = new WeChatPayFactory();
         Pay weChatPay = weChatPayFactory.getPay();
         weChatPay.unifiedPay();
+        System.out.println("===============");
+        // 抽象工厂模式
+        OrderFactory aliFactory = FactoryProducer.getFactory("ali");
+        aliFactory.createPayFactory().unifiedPay();
+        aliFactory.createRefundFactory().refund();
     }
 }
