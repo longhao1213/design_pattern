@@ -33,7 +33,14 @@ public class Main {
         Pay weChatPay = weChatPayFactory.getPay();
         weChatPay.unifiedPay();
         System.out.println("===============");
-        // 抽象工厂模式
+
+        /**
+         * 抽象工厂模式
+         * 通过超级工厂来创建工厂，被创建的工厂一般都有这相同类型的功能
+         * 比如微信和阿里 都有支付和退款的功能
+         * 我们只需要更改在超级工厂创建工厂时候的参数，就可以或者一个 能统一作用的工厂
+         * 来完成这一系列的工作
+         */
         OrderFactory aliFactory = FactoryProducer.getFactory("ali");
         aliFactory.createPayFactory().unifiedPay();
         aliFactory.createRefundFactory().refund();
