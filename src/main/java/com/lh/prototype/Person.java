@@ -1,6 +1,7 @@
 package com.lh.prototype;
 
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @version 1.0.0
  * @Date 2020/11/18 14:46
  */
-public class Person implements Cloneable {
+public class Person implements Cloneable, Serializable {
 
     private String name;
 
@@ -26,6 +27,16 @@ public class Person implements Cloneable {
 
     public Person clone() throws CloneNotSupportedException {
         return (Person) super.clone();
+    }
+
+    public Person deepClone() throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(this);
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        return (Person) ois.readObject();
     }
 
     public String getName() {

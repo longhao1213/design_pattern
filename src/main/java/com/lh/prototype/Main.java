@@ -3,6 +3,7 @@ package com.lh.prototype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -14,14 +15,17 @@ import java.util.Arrays;
  * @Date 2020/11/18 14:48
  */
 public class Main {
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
         // 原型设计模式
         Person person1 = new Person();
         person1.setName("long san");
         person1.setAge(10);
         person1.getList().add("aaa");
 
-        Person person2 = person1.clone();
+        // 浅拷贝
+//        Person person2 = person1.clone();
+        // 深拷贝
+        Person person2 = person1.deepClone();
         person2.setAge(20);
         person2.getList().add("bbb");
 
